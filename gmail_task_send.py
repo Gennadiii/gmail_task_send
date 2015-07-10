@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
-from time import sleep
 from datetime import datetime
 
 weekday = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
@@ -44,17 +43,16 @@ Thanks!
 
 driver = webdriver.Firefox()
 driver.maximize_window()
+driver.implicitly_wait(30)
 driver.get('https://accounts.google.com')
 elem = driver.find_element_by_id('Email')
 elem.send_keys('g.mishchevskii@gmail.com')
 elem.send_keys(Keys.RETURN)
 driver.find_element_by_id('next').click()
-sleep(1)
 driver.find_element_by_id('PersistentCookie').click()
-driver.find_element_by_id('Passwd').send_keys('ctktybevNtcn')
+driver.find_element_by_id('Passwd').send_keys('*')
 driver.find_element_by_id('signIn').click()
 driver.get('https://mail.google.com/mail/u/0/?pli=1#inbox?compose=new')
-sleep(8)
 driver.find_element_by_name('to').send_keys('hof.gmcl2@playtika.com')
 driver.find_element_by_name('to').send_keys(Keys.RETURN)
 driver.find_element_by_name('subjectbox').send_keys(subject)
