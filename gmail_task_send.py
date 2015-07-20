@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
 from datetime import datetime
 
 weekday = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
@@ -43,18 +42,34 @@ Thanks!
 
 driver = webdriver.Firefox()
 driver.maximize_window()
-driver.implicitly_wait(30)
+
+
 driver.get('https://accounts.google.com')
-elem = driver.find_element_by_id('Email')
-elem.send_keys('g.mishchevskii@gmail.com')
+driver.implicitly_wait(30)
+
+email = driver.find_element_by_id('Email')
+nextt = driver.find_element_by_id('next')
+remember_check_point = driver.find_element_by_id('PersistentCookie')
+password = driver.find_element_by_id('Passwd')
+sign_in_button = driver.find_element_by_id('signIn')
+
+email.send_keys('g.mishchevskii@gmail.com')
 elem.send_keys(Keys.RETURN)
-driver.find_element_by_id('next').click()
-driver.find_element_by_id('PersistentCookie').click()
-driver.find_element_by_id('Passwd').send_keys('*')
-driver.find_element_by_id('signIn').click()
+nextt.click()
+remember_check_point.click()
+password.send_keys('*')
+sign_in_button.click()
+
+
 driver.get('https://mail.google.com/mail/u/0/?pli=1#inbox?compose=new')
-driver.find_element_by_name('to').send_keys('hof.gmcl2@playtika.com')
-driver.find_element_by_name('to').send_keys(Keys.RETURN)
-driver.find_element_by_name('subjectbox').send_keys(subject)
-driver.find_element_by_xpath("//div[@role='textbox']").send_keys(task)
+
+send_to = driver.find_element_by_name('to')
+subject_field = driver.find_element_by_name('subjectbox')
+letter_field = driver.find_element_by_xpath("//div[@role='textbox']")
+
+send_to.send_keys('hof.gmcl2@playtika.com')
+send_to.send_keys(Keys.RETURN)
+subject_field.send_keys(subject)
+letter_field.send_keys(task)
+
 exit()
