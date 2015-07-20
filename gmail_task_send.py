@@ -7,6 +7,7 @@ year = datetime.now().year
 month = datetime.now().month
 day = datetime.now().day+1
 now = datetime.now()
+my_password = '1890_suMmer_dc1b'
 
 if datetime.weekday(now) == 4: # Task given on Friday
     try: # If it's not the end of a month
@@ -43,21 +44,23 @@ Thanks!
 driver = webdriver.Firefox()
 driver.maximize_window()
 
-
 driver.get('https://accounts.google.com')
 driver.implicitly_wait(30)
 
 email = driver.find_element_by_id('Email')
-nextt = driver.find_element_by_id('next')
-remember_check_point = driver.find_element_by_id('PersistentCookie')
-password = driver.find_element_by_id('Passwd')
-sign_in_button = driver.find_element_by_id('signIn')
-
 email.send_keys('g.mishchevskii@gmail.com')
-elem.send_keys(Keys.RETURN)
+email.send_keys(Keys.RETURN)
+
+nextt = driver.find_element_by_id('next')
 nextt.click()
+
+remember_check_point = driver.find_element_by_id('PersistentCookie')
 remember_check_point.click()
-password.send_keys('*')
+
+password = driver.find_element_by_id('Passwd')
+password.send_keys(my_password)
+
+sign_in_button = driver.find_element_by_id('signIn')
 sign_in_button.click()
 
 
